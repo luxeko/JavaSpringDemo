@@ -1,7 +1,7 @@
 package com.example.javaspringdemo.controllers;
 
 import com.example.javaspringdemo.entities.Education;
-import com.example.javaspringdemo.services.EducationService;
+import com.example.javaspringdemo.services.eloquents.EducationImplService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,30 +14,30 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path = "education")
+@RequestMapping(path = "/education")
 public class EducationController {
     @Autowired
-    EducationService educationService;
+    private EducationImplService educationImplService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model) {
-        List<Education> listEducation = this.educationService.listAll();
+        List<Education> listEducation = this.educationImplService.getAllEducation();
         model.addAttribute("listEducation", listEducation);
         return "education/index";
     }
 
-    @RequestMapping(value = "create", method = RequestMethod.GET)
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(Model model) {
         Education education = new Education();
         model.addAttribute("education", education);
         return "education/create";
     }
 
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable("id") int id, BindingResult result) {
-        Optional<Education> op = educationService.getById(id);
+        Optional<Education> op = educationImplService.getOneEducation(id);
         if (op.isPresent()) {
-            educationService.delete(id);
+            educationImplService.deleteEducation(id);
         } else {
             ObjectError error = new ObjectError("globalError", "Id not found");
             result.addError(error);
@@ -45,13 +45,9 @@ public class EducationController {
         return "redirect:/education";
     }
 
-    //    @GetMapping(value = "/delete")
-//    public String delete2(@RequestParam("id") int id) {
-//        return "redirect:/education";
-//    }
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable("id") int id, Model model) {
-        Optional<Education> op = educationService.getById(id);
+        Optional<Education> op = educationImplService.getOneEducation(id);
         if (op.isPresent()) {
             Education education = op.get();
             model.addAttribute("education", education);
@@ -60,14 +56,28 @@ public class EducationController {
         return "redirect:/education";
     }
 
-    @RequestMapping(value = "save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("education") @Valid Education education, BindingResult result) {
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String add(@ModelAttribute("education") @Valid Education education, BindingResult result) {
         if (result.hasErrors()) {
             return "education/create";
-        } else if (result.hasErrors() && education.getId() != 0) {
-            return "education/edit/" + education.getId();
         }
-        educationService.save(education);
+        educationImplService.save(education);
         return "redirect:/education";
     }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    public String update(@PathVariable("id") int id, @ModelAttribute("education") @Valid Education education,
+                         BindingResult result) {
+        if (result.hasErrors()) {
+            return "education/edit";
+        }
+        educationImplService.save(education);
+        return "redirect:/education";
+    }
+
+
+    //    @GetMapping(value = "/delete")
+//    public String delete2(@RequestParam("id") int id) {
+//        return "redirect:/education";
+//    }
 }
