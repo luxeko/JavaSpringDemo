@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity(name = "educations")
-public class EducationEntity {
+public class Education {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -42,10 +42,10 @@ public class EducationEntity {
     private Date end_time;
 
 
-    public EducationEntity() {
+    public Education() {
     }
 
-    public EducationEntity(int id, String school, String course, String level, float GPA, Date start_time, Date end_time) {
+    public Education(int id, String school, String course, String level, float GPA, Date start_time, Date end_time) {
         this.id = id;
         this.school = school;
         this.course = course;

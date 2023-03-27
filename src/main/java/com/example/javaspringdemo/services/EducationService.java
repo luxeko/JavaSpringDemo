@@ -1,6 +1,6 @@
 package com.example.javaspringdemo.services;
 
-import com.example.javaspringdemo.entities.EducationEntity;
+import com.example.javaspringdemo.entities.Education;
 import com.example.javaspringdemo.repositories.EducationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +15,13 @@ public class EducationService {
     @Autowired
     private EducationRepository educationRepository;
 
-    public List<EducationEntity> listAll(){
+    public List<Education> listAll(){
         return educationRepository.findAll();
     }
-    public void save(EducationEntity educationEntity) {
-        educationRepository.save(educationEntity);
+    public void save(Education education) {
+        educationRepository.save(education);
     }
-    public Optional<EducationEntity> getById(int id) {
+    public Optional<Education> getById(int id) {
         return educationRepository.findById(id);
     }
 

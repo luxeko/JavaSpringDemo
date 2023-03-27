@@ -1,7 +1,6 @@
 package com.example.javaspringdemo.controllers;
 
-import com.example.javaspringdemo.entities.EducationEntity;
-import com.example.javaspringdemo.repositories.EducationRepository;
+import com.example.javaspringdemo.entities.Education;
 import com.example.javaspringdemo.services.EducationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,21 +21,21 @@ public class EducationController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model) {
-        List<EducationEntity> listEducation = this.educationService.listAll();
+        List<Education> listEducation = this.educationService.listAll();
         model.addAttribute("listEducation", listEducation);
         return "education/index";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String create(Model model) {
-        EducationEntity educationEntity = new EducationEntity();
-        model.addAttribute("education", educationEntity);
+        Education education = new Education();
+        model.addAttribute("education", education);
         return "education/create";
     }
 
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable("id") int id, BindingResult result) {
-        Optional<EducationEntity> op = educationService.getById(id);
+        Optional<Education> op = educationService.getById(id);
         if (op.isPresent()) {
             educationService.delete(id);
         } else {
@@ -52,23 +51,23 @@ public class EducationController {
 //    }
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable("id") int id, Model model) {
-        Optional<EducationEntity> op = educationService.getById(id);
+        Optional<Education> op = educationService.getById(id);
         if (op.isPresent()) {
-            EducationEntity educationEntity = op.get();
-            model.addAttribute("education", educationEntity);
+            Education education = op.get();
+            model.addAttribute("education", education);
             return "education/edit";
         }
         return "redirect:/education";
     }
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("education") @Valid EducationEntity educationEntity, BindingResult result) {
+    public String save(@ModelAttribute("education") @Valid Education education, BindingResult result) {
         if (result.hasErrors()) {
             return "education/create";
-        } else if (result.hasErrors() && educationEntity.getId() != 0) {
-            return "education/edit/" + educationEntity.getId();
+        } else if (result.hasErrors() && education.getId() != 0) {
+            return "education/edit/" + education.getId();
         }
-        educationService.save(educationEntity);
+        educationService.save(education);
         return "redirect:/education";
     }
 }
