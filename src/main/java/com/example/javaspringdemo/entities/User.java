@@ -36,7 +36,6 @@ public class User {
     @Column(name = "phone")
     private String phone;
     @Basic
-    @Enumerated
     @Column(name = "gender")
     private String gender;
     @Basic

@@ -16,13 +16,6 @@ public class JavaSpringDemoApplication implements CommandLineRunner {
         SpringApplication.run(JavaSpringDemoApplication.class, args);
     }
 
-    @Bean(name = "USER_BEAN")
-    public User setUser() {
-        User user = new User();
-        user.setUsername("admin");
-        user.setPassword("admin");
-        return user;
-    }
     @Override
     public void run(String... args) throws Exception {
     }

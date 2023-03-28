@@ -7,22 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Favicons -->
-    <link th:href="@{/assets/img/favicon.png}" rel="icon">
-    <link th:href="@{/assets/img/apple-touch-icon.png}" rel="apple-touch-icon">
+    <link th:href="@{/assets/img/favicon.png}" >
+    <link th:href="@{/assets/img/apple-touch-icon.png}">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i">
 
     <!-- Vendor CSS Files -->
-    <link th:href="@{/assets/vendor/aos/aos.css}" rel="stylesheet">
-    <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/assets/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
-    <link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
-    <link th:href="@{/assets/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
-    <link th:href="@{/assets/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/vendor/aos/aos.css}">
+    <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}">
+    <link th:href="@{/assets/vendor/bootstrap-icons/bootstrap-icons.css}">
+    <link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}">
+    <link th:href="@{/assets/vendor/glightbox/css/glightbox.min.css}">
+    <link th:href="@{/assets/vendor/swiper/swiper-bundle.min.css}">
 
     <!-- Template Main CSS File -->
-    <link th:href="@{/assets/css/style.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/style.css}">
 
     <!-- Vendor JS Files -->
     <script th:src="@{/assets/vendor/purecounter/purecounter_vanilla.js}"></script>
@@ -59,7 +59,7 @@
                     <span>Education</span></a></li>
                 <li><a href="#" class="nav-link scrollto"><i class="bx bx-book-content"></i>
                     <span>Experience</span></a></li>
-                <li><a href="#" class="nav-link scrollto"><i class='bx bx-log-out'></i>
+                <li><a th:href="@{/logout}" class="nav-link scrollto"><i class='bx bx-log-out'></i>
                     <span>Logout</span></a></li>
             </ul>
         </nav><!-- .nav-menu -->
