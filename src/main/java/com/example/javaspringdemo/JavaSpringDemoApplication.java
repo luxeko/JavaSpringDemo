@@ -1,6 +1,7 @@
 package com.example.javaspringdemo;
 
 import com.example.javaspringdemo.entities.Education;
+import com.example.javaspringdemo.entities.User;
 import com.example.javaspringdemo.repositories.EducationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +15,10 @@ public class JavaSpringDemoApplication implements CommandLineRunner {
         SpringApplication.run(JavaSpringDemoApplication.class, args);
     }
 
+    public User setUser() {
+        User user = new User();
+        return user;
+    }
     @Override
     public void run(String... args) throws Exception {
     }
