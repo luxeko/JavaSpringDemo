@@ -6,7 +6,6 @@ import com.example.javaspringdemo.services.interfaces.IEducationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.ObjectError;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +15,6 @@ import java.util.Optional;
 public class EducationImplService implements IEducationService {
     @Autowired
     private EducationRepository educationRepository;
-
 
     @Override
     public void save(Education education) {

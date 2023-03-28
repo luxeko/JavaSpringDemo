@@ -19,21 +19,21 @@ public class EducationController {
     @Autowired
     private EducationImplService educationImplService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @GetMapping(value = "")
     public String index(Model model) {
         List<Education> listEducation = this.educationImplService.getAllEducation();
         model.addAttribute("listEducation", listEducation);
         return "education/index";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @GetMapping(value = "/create")
     public String create(Model model) {
         Education education = new Education();
         model.addAttribute("education", education);
         return "education/create";
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable("id") int id, BindingResult result) {
         Optional<Education> op = educationImplService.getOneEducation(id);
         if (op.isPresent()) {
@@ -56,7 +56,7 @@ public class EducationController {
         return "redirect:/education";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @PostMapping(value = "/add")
     public String add(@ModelAttribute("education") @Valid Education education, BindingResult result) {
         if (result.hasErrors()) {
             return "education/create";
@@ -65,7 +65,7 @@ public class EducationController {
         return "redirect:/education";
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/update/{id}")
     public String update(@PathVariable("id") int id, @ModelAttribute("education") @Valid Education education,
                          BindingResult result) {
         if (result.hasErrors()) {

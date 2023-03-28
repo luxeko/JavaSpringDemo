@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class JavaSpringDemoApplication implements CommandLineRunner {
@@ -15,8 +16,11 @@ public class JavaSpringDemoApplication implements CommandLineRunner {
         SpringApplication.run(JavaSpringDemoApplication.class, args);
     }
 
+    @Bean(name = "USER_BEAN")
     public User setUser() {
         User user = new User();
+        user.setUsername("admin");
+        user.setPassword("admin");
         return user;
     }
     @Override
