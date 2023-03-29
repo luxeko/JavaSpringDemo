@@ -27,8 +27,8 @@ public class EducationImplService implements IEducationService {
     }
 
     @Override
-    public List<Education> getAllEducation() {
-        return educationRepository.findAll();
+    public List<Education> getAllEducation(int userId) {
+        return educationRepository.findEducationsByUserId(userId);
     }
 
     @Override

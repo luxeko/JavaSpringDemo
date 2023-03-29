@@ -5,59 +5,62 @@
     <div th:replace="/layout/fragments :: html_head(type='tag')"></div>
 </head>
 <body>
-<div th:replace="/layout/fragments :: navbar"></div>
-<div class="container py-5">
-    <h2>List Education</h2>
-    <!--    <div id="toast" th:if="${#fields.hasErrors('global')}">-->
-    <!--        <p th:each="err : ${#fields.errors('global')}" th:text="${err}"></p>-->
-    <!--    </div>-->
-    <div class="add-more my-3">
-        <a href="/education/create" class="btn btn-success"><i class="bi bi-plus"></i> Add new</a>
+<div th:replace="/layout/fragments :: header"></div>
+<main id="main">
+    <div class="container py-5" data-aos="fade-up">
+        <h2>[[${pageTitle}]]</h2>
+        <!--    <div id="toast" th:if="${#fields.hasErrors('global')}">-->
+        <!--        <p th:each="err : ${#fields.errors('global')}" th:text="${err}"></p>-->
+        <!--    </div>-->
+        <div class="add-more my-3">
+            <a href="/education/create" class="btn btn-success"><i class="bi bi-plus"></i> Add new</a>
+        </div>
+        <table class="table table-bordered">
+            <thead class="table-secondary">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">School</th>
+                <th scope="col">Course</th>
+                <th scope="col">Level</th>
+                <th scope="col">GPA</th>
+                <th scope="col">Start time</th>
+                <th scope="col">End time</th>
+                <th class="text-center" scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="listEducation, item: ${listEducation}">
+                <th th:text="${item.index + 1}" scope="row" class="align-middle">
+                </th>
+                <td th:text="${listEducation.school}" class="align-middle">
+                </td>
+                <td th:text="${listEducation.course}" class="align-middle">
+                </td>
+                <td th:text="${listEducation.level}" class="align-middle">
+                </td>
+                <td th:text="${listEducation.GPA}" class="align-middle">
+                </td>
+                <td th:text="${#dates.format(listEducation.start_time, 'dd-MM-yyyy')}" class="align-middle">
+                </td>
+                <td th:text="${#dates.format(listEducation.end_time, 'dd-MM-yyyy')}" class="align-middle">
+                </td>
+                <td class="align-middle">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <!--                    <a href=""-->
+                        <!--                       class="btn btn-primary text-white me-2"><i class="bi bi-eye"></i></a>-->
+                        <a th:href="@{/education/edit/{id}(id=${listEducation.id})}"
+                           class="btn btn-warning text-white me-2"><i class="bi bi-pencil"></i></a>
+                        <a onclick="return confirm('Are you sure you want to delete?')"
+                           th:href="@{/education/delete/{id}(id=${listEducation.id})}"
+                           class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    <table class="table table-bordered">
-        <thead class="table-secondary">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">School</th>
-            <th scope="col">Course</th>
-            <th scope="col">Level</th>
-            <th scope="col">GPA</th>
-            <th scope="col">Start time</th>
-            <th scope="col">End time</th>
-            <th class="text-center" scope="col">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="listEducation, item: ${listEducation}">
-            <th th:text="${item.index + 1}" scope="row" class="align-middle">
-            </th>
-            <td th:text="${listEducation.school}" class="align-middle">
-            </td>
-            <td th:text="${listEducation.course}" class="align-middle">
-            </td>
-            <td th:text="${listEducation.level}" class="align-middle">
-            </td>
-            <td th:text="${listEducation.GPA}" class="align-middle">
-            </td>
-            <td th:text="${#dates.format(listEducation.start_time, 'dd-MM-yyyy')}" class="align-middle">
-            </td>
-            <td th:text="${#dates.format(listEducation.end_time, 'dd-MM-yyyy')}" class="align-middle">
-            </td>
-            <td class="align-middle">
-                <div class="d-flex justify-content-center align-items-center">
-                    <!--                    <a href=""-->
-                    <!--                       class="btn btn-primary text-white me-2"><i class="bi bi-eye"></i></a>-->
-                    <a th:href="@{/education/edit/{id}(id=${listEducation.id})}"
-                       class="btn btn-warning text-white me-2"><i class="bi bi-pencil"></i></a>
-                    <a onclick="return confirm('Are you sure you want to delete?')"
-                       th:href="@{/education/delete/{id}(id=${listEducation.id})}"
-                       class="btn btn-danger"><i class="bi bi-trash"></i></a>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+</main>
 <div th:replace="/layout/fragments :: footer"></div>
+<div th:replace="/layout/fragments :: back-to-top"></div>
 </body>
 </html>

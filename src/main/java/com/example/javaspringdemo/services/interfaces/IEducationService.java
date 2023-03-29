@@ -14,7 +14,7 @@ public interface IEducationService {
     public void deleteEducation(int id);
 
     // Lấy ra danh sách education
-    public List<Education> getAllEducation();
+    public List<Education> getAllEducation(int userId);
 
     // Lấy ra 1 education
     public Optional<Education> getOneEducation(int id);

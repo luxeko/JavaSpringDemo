@@ -14,15 +14,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path = "/education")
+@RequestMapping(path = "/my-portfolio/education")
 public class EducationController {
     @Autowired
     private EducationImplService educationImplService;
 
     @GetMapping(value = "")
     public String index(Model model) {
-        List<Education> listEducation = this.educationImplService.getAllEducation();
+        int userId = 1;
+        List<Education> listEducation = this.educationImplService.getAllEducation(userId);
         model.addAttribute("listEducation", listEducation);
+        model.addAttribute("pageTitle", "My Education");
         return "education/index";
     }
 

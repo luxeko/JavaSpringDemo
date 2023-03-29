@@ -42,11 +42,15 @@ public class User {
     @Column(name = "birthday")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
+    @Basic
+    @Column(name = "freelance")
+    private String freelance;
 
     public User() {
     }
 
-    public User(int id, String username, String email, String password, String address, String phone, String gender, Date birthday) {
+    public User(int id, String username, String email, String password, String address, String phone, String gender,
+                Date birthday, String freelance) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -55,6 +59,15 @@ public class User {
         this.phone = phone;
         this.gender = gender;
         this.birthday = birthday;
+        this.freelance = freelance;
+    }
+
+    public String getFreelance() {
+        return freelance;
+    }
+
+    public void setFreelance(String freelance) {
+        this.freelance = freelance;
     }
 
     public int getId() {

@@ -14,6 +14,9 @@ public class Experience {
     @Column(name = "id")
     private int id;
     @Basic
+    @Column(name = "user_id")
+    private int userId;
+    @Basic
     @Column(name = "company")
     @NotEmpty(message = "Company cannot be empty")
     @Size(min = 2, max = 255, message = "Size must be between 2 and 255")
@@ -38,13 +41,15 @@ public class Experience {
     public Experience() {
     }
 
-    public Experience(int id, String company, String position, String description, Date start_time, Date end_time) {
+    public Experience(int id, int userId, String company, String position, String description, Date start_time,
+                      Date end_time) {
         this.id = id;
         this.company = company;
         this.position = position;
         this.description = description;
         this.start_time = start_time;
         this.end_time = end_time;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -53,6 +58,14 @@ public class Experience {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getCompany() {

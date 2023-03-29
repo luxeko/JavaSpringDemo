@@ -16,6 +16,9 @@ public class Education {
     @Column(name = "id")
     private int id;
     @Basic
+    @Column(name = "user_id")
+    private int userId;
+    @Basic
     @Column(name = "school")
     @NotEmpty(message = "School cannot be empty")
     @Size(min = 5, max = 255, message = "Size must be between 5 and 255")
@@ -45,7 +48,8 @@ public class Education {
     public Education() {
     }
 
-    public Education(int id, String school, String course, String level, float GPA, Date start_time, Date end_time) {
+    public Education(int id, int userId, String school, String course, String level, float GPA, Date start_time,
+                     Date end_time) {
         this.id = id;
         this.school = school;
         this.course = course;
@@ -53,6 +57,7 @@ public class Education {
         this.GPA = GPA;
         this.start_time = start_time;
         this.end_time = end_time;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -61,6 +66,14 @@ public class Education {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getSchool() {

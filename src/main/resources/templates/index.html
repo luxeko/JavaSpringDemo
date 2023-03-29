@@ -13,9 +13,9 @@
     <link rel="icon" th:href="@{/img/apple-touch-icon.png}">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i">
 
-    <link th:href="@{/css/auth.css}" th:rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
 </head>
 <body>
 <main>
@@ -24,14 +24,14 @@
             <div class="forms-wrap">
                 <form th:action="@{/user/create}" method="POST" class="sign-in-form">
                     <div class="logo">
-                        <img th:src="@{/img/logo.png}" alt="easyclass" />
-                        <h4>easyclass</h4>
+                        <img th:src="@{/img/logo.png}" alt="my_portfolio" />
+                        <h4>MY PORTFOLIO</h4>
                     </div>
 
                     <div class="heading">
                         <h2>Welcome Back</h2>
                         <h6>Not registred yet?</h6>
-                        <a href="" class="toggle">Sign up</a>
+                        <a href="#" class="toggle">Sign up</a>
                     </div>
 
                     <div class="actual-form">
@@ -60,24 +60,19 @@
                         </div>
 
                         <input type="submit" value="Sign In" class="sign-btn" />
-
-                        <p class="text">
-                            Forgotten your password or you login datails?
-                            <a href="#">Get help</a> signing in
-                        </p>
                     </div>
                 </form>
 
                 <form th:action="@{/user/create}" method="POST" class="sign-up-form">
                     <div class="logo">
-                        <img th:src="@{/img/logo.png}" alt="easyclass" />
-                        <h4>easyclass</h4>
+                        <img th:src="@{/img/logo.png}" alt="my_portfolio" />
+                        <h4>MY PORTFOLIO</h4>
                     </div>
 
                     <div class="heading">
                         <h2>Get Started</h2>
                         <h6>Already have an account?</h6>
-                        <a href="" class="toggle">Sign in</a>
+                        <a href="#" class="toggle">Sign in</a>
                     </div>
 
                     <div class="actual-form">
@@ -117,12 +112,6 @@
                         </div>
 
                         <input type="submit" value="Sign Up" class="sign-btn" />
-
-                        <p class="text">
-                            By signing up, I agree to the
-                            <a href="#">Terms of Services</a> and
-                            <a href="#">Privacy Policy</a>
-                        </p>
                     </div>
                 </form>
             </div>
@@ -154,6 +143,6 @@
     </div>
 </main>
 
-<script type="text/javascript" th:src="@{/js/auth.js}"></script>
+<script th:src="@{/js/auth.js}"></script>
 </body>
 </html>

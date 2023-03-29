@@ -17,11 +17,15 @@ main {
     width: 100%;
     min-height: 100vh;
     overflow: hidden;
-    background-color: #ff8c6b;
+    /*background-color: #FBAB7E;*/
+    /*background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);*/
+    background-image: url("../img/sapce_man.jpg");
+    background-repeat: no-repeat;
     padding: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
 .box {
@@ -29,9 +33,13 @@ main {
     width: 100%;
     max-width: 1020px;
     height: 640px;
-    background-color: #fff;
     border-radius: 3.3rem;
-    box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+    /*background-color: transparent;*/
+    background-color: #423c5a80 !important;
+    box-shadow: 0 10px 15px rgb(0 0 0 / 30%) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(33px) !important;
+    background-blend-mode: overlay !important;
 }
 
 .inner-box {
@@ -87,24 +95,24 @@ form.sign-up-form {
     font-size: 1.1rem;
     margin-top: -9px;
     letter-spacing: -0.5px;
-    color: #151111;
+    color: #ffffff;
 }
 
 .heading h2 {
     font-size: 2.1rem;
     font-weight: 600;
-    color: #151111;
+    color: #ffffff;
 }
 
 .heading h6 {
-    color: #bababa;
+    color: #ffffff;
     font-weight: 400;
     font-size: 0.75rem;
     display: inline;
 }
 
 .toggle {
-    color: #151111;
+    color: #ffffff;
     text-decoration: none;
     font-size: 0.75rem;
     font-weight: 500;
@@ -128,10 +136,10 @@ form.sign-up-form {
     background: none;
     border: none;
     outline: none;
-    border-bottom: 1px solid #bbb;
+    border-bottom: 1px solid #ffffff;
     padding: 0;
     font-size: 0.95rem;
-    color: #151111;
+    color: #ffffff;
     transition: 0.4s;
 }
 
@@ -141,13 +149,13 @@ label {
     top: 50%;
     transform: translateY(-50%);
     font-size: 0.95rem;
-    color: #bbb;
+    color: #ffffff;
     pointer-events: none;
     transition: 0.4s;
 }
 
 .input-field.active {
-    border-bottom-color: #151111;
+    border-bottom-color: #8371fd;
 }
 
 .input-field.active + label {
@@ -159,8 +167,8 @@ label {
     display: inline-block;
     width: 100%;
     height: 43px;
-    background-color: #151111;
-    color: #fff;
+    background-color: #ffffff;
+    color: #151111;
     border: none;
     cursor: pointer;
     border-radius: 0.8rem;
@@ -171,6 +179,7 @@ label {
 
 .sign-btn:hover {
     background-color: #8371fd;
+    color: #ffffff;
 }
 
 .text {
@@ -211,7 +220,8 @@ main.sign-up-mode .carousel {
     width: 55%;
     left: 45%;
     top: 0;
-    background-color: #ffe0d2;
+    background-color: #FF3CAC;
+    background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
     border-radius: 2rem;
     display: grid;
     grid-template-rows: auto 1fr;
@@ -288,7 +298,7 @@ main.sign-up-mode .carousel {
     display: block;
     width: 0.5rem;
     height: 0.5rem;
-    background-color: #aaa;
+    background-color: #ffffff;
     margin: 0 0.25rem;
     border-radius: 50%;
     cursor: pointer;
@@ -297,7 +307,7 @@ main.sign-up-mode .carousel {
 
 .bullets span.active {
     width: 1.1rem;
-    background-color: #151111;
+    background-color: #000;
     border-radius: 1rem;
 }
 

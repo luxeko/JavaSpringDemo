@@ -67,8 +67,12 @@ h6 {
   transition: all ease-in-out 0.5s;
   z-index: 9997;
   padding: 0 15px;
-  background: #040b14;
   overflow-y: auto;
+  background-color: #212431 !important;
+  box-shadow: 0 10px 15px rgb(0 0 0 / 30%) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(33px) !important;
+  background-blend-mode: overlay !important;
 }
 
 #header .profile img {
@@ -1054,7 +1058,7 @@ section {
   bottom: 0;
   width: 300px;
   z-index: 9999;
-  background: #040b14;
+  background: #212431;
 }
 
 #footer .copyright {
