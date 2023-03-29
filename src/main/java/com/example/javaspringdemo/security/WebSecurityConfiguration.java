@@ -16,9 +16,11 @@ public class WebSecurityConfiguration  {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/js/**", "/css/**", "/img/**" ,"/pressiplus", "/public/**",
-                "/index", "/", "/login").permitAll();
         http.authorizeRequests()
+                .antMatchers(HttpMethod.GET,
+                        "/js/**",
+                        "/css/**",
+                        "/img/**").permitAll()
                 .antMatchers("/my-portfolio").permitAll()
                 .anyRequest().authenticated().and()
                 .formLogin().loginPage("/login").permitAll();
@@ -26,8 +28,11 @@ public class WebSecurityConfiguration  {
         return http.build();
     }
 
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() throws Exception {
-//        return (web) -> web.ignoring().antMatchers("/images/**", "/js/**", "webjars/**", "/assets/**");
-//    }
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() throws Exception {
+        return (web) -> web.ignoring().antMatchers(
+                "/js/**",
+                "/css/**",
+                "/img/**");
+    }
 }
