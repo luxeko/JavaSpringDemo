@@ -22,7 +22,7 @@
     <div class="box">
         <div class="inner-box">
             <div class="forms-wrap">
-                <form th:action="@{/user/create}" method="POST" class="sign-in-form">
+                <form th:action="@{/j_spring_security_check}" method="POST" class="sign-in-form">
                     <div class="logo">
                         <img th:src="@{/img/logo.png}" alt="my_portfolio" />
                         <h4>MY PORTFOLIO</h4>
@@ -37,33 +37,35 @@
                     <div class="actual-form">
                         <div class="input-wrap">
                             <input
-                                    type="text"
+                                    type="email"
                                     minlength="4"
                                     class="input-field"
                                     autocomplete="off"
-                                    id="name"
+                                    id="email_sign-in"
+                                    name="email"
                                     required
                             />
-                            <label for="name">Name</label>
+                            <label for="email_sign-in">Email</label>
                         </div>
 
                         <div class="input-wrap">
                             <input
                                     type="password"
+                                    name="password"
                                     minlength="4"
                                     class="input-field"
                                     autocomplete="off"
-                                    id="password"
+                                    id="password_sign-in"
                                     required
                             />
-                            <label for="password">Password</label>
+                            <label for="password_sign-in">Password</label>
                         </div>
 
                         <input type="submit" value="Sign In" class="sign-btn" />
                     </div>
                 </form>
 
-                <form th:action="@{/user/create}" method="POST" class="sign-up-form">
+                <form th:action="@{/user/create}" method="POST" class="sign-up-form" th:object="${user}">
                     <div class="logo">
                         <img th:src="@{/img/logo.png}" alt="my_portfolio" />
                         <h4>MY PORTFOLIO</h4>
@@ -78,6 +80,7 @@
                     <div class="actual-form">
                         <div class="input-wrap">
                             <input
+                                    th:field="*{username}"
                                     type="text"
                                     minlength="4"
                                     class="input-field"
@@ -90,6 +93,7 @@
 
                         <div class="input-wrap">
                             <input
+                                    th:field="*{email}"
                                     type="email"
                                     class="input-field"
                                     autocomplete="off"
@@ -101,6 +105,7 @@
 
                         <div class="input-wrap">
                             <input
+                                    th:field="*{password}"
                                     type="password"
                                     minlength="4"
                                     class="input-field"
@@ -111,7 +116,7 @@
                             <label for="password_sign-up">Password</label>
                         </div>
 
-                        <input type="submit" value="Sign Up" class="sign-btn" />
+                        <button type="submit" class="sign-btn">Sign Up</button>
                     </div>
                 </form>
             </div>

@@ -27,7 +27,9 @@ public class AuthController {
     @Autowired
     private ExperienceRepository experienceRepository;
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
         return "index";
     }
 
@@ -39,7 +41,7 @@ public class AuthController {
     @GetMapping("/my-portfolio")
     public String view(Model model) {
         int id = 1;
-        Optional<User> op = userImplService.getOneUser(id);
+        Optional<User> op = userImplService.getOneUserById(id);
         List<Education> educations = educationRepository.findEducationsByUserId(id);
         List<Experience> experiences = experienceRepository.findExperiencesByUserId(id);
         if (op.isPresent()) {

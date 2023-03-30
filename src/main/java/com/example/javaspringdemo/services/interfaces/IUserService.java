@@ -6,6 +6,7 @@ import com.example.javaspringdemo.entities.User;
 import java.util.Optional;
 
 public interface IUserService {
-    public void save(User user);
-    public Optional<User> getOneUser(int id);
+    public User save(User user);
+
+    public Optional<User> getOneUserById(int id);
 }

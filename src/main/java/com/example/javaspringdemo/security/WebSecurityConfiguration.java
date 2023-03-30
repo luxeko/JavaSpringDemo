@@ -1,13 +1,14 @@
 package com.example.javaspringdemo.security;
 
+import com.example.javaspringdemo.services.eloquents.CustomUserDetailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -15,37 +16,49 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration {
+
+    @Autowired
+    CustomUserDetailService customUserDetailService;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
+        http.cors().and().csrf().disable();
         http.authorizeRequests()
-                .antMatchers(
-                        "/my-portfolio","/my-portfolio/education",
-                        "/js/**",
-                        "/css/**",
-                        "/img/**",
-                        "/fonts/**").permitAll()
-                .anyRequest().authenticated().and()
-                .formLogin().loginPage("/login").permitAll();
+                .antMatchers("/user/create").permitAll()
+                .antMatchers("/login/**")
+                .anonymous()
+                .anyRequest().authenticated()
+                .and()
+                .httpBasic()
+                .and()
+                .formLogin().loginPage("/login").permitAll()
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/my-portfolio")
+                .failureUrl("/login?status=false")
+                .loginProcessingUrl("/j_spring_security_check");
 
         return http.build();
     }
 
-//    @Override
-//    protected WebSecurityCustomizer configure(AuthenticationManagerBuilder auth) throws Exception {
-//        return auth.inMemoryAuthentication().withUser("user1").password(passwordEncoder().encode("user1pass")).authorities(
-//                "ROLE_USER");
-//    }
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() throws Exception {
-//        return (web) -> web.ignoring().antMatchers(
-//                "/js/**",
-//                "/css/**",
-//                "/img/**");
-//    }
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() throws Exception {
+        return (web) -> web.ignoring()
+                .antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico", "/fonts/**");
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(HttpSecurity http, CustomUserDetailService customUserDetailService)
+            throws Exception {
+        return http.getSharedObject(AuthenticationManagerBuilder.class)
+                .userDetailsService(customUserDetailService)
+                .passwordEncoder(passwordEncoder())
+                .and()
+                .build();
+    }
 }
