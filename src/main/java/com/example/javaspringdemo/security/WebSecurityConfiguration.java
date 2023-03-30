@@ -16,7 +16,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration {
-
     @Autowired
     CustomUserDetailService customUserDetailService;
 
@@ -37,11 +36,11 @@ public class WebSecurityConfiguration {
                 .httpBasic()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
+                .loginProcessingUrl("/j_spring_security_check")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/my-portfolio")
-                .failureUrl("/login?status=false")
-                .loginProcessingUrl("/j_spring_security_check");
+                .failureUrl("/login?status=false");
 
         return http.build();
     }

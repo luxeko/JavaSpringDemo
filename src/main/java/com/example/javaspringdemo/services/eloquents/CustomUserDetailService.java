@@ -22,7 +22,6 @@ public class CustomUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> op = userRepository.findUserByEmail(email);
-        System.out.println(email);
         if (op.isPresent()) {
             User user = op.get();
             List<GrantedAuthority> grandtList = new ArrayList<GrantedAuthority>();
@@ -31,7 +30,7 @@ public class CustomUserDetailService implements UserDetailsService {
             return new org.springframework.security.core.userdetails.User(user.getEmail(),
                     user.getPassword(), grandtList);
         } else {
-            throw new UsernameNotFoundException("Login Fail !");
+            throw new UsernameNotFoundException("Login Fail!");
         }
     }
 }

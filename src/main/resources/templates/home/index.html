@@ -14,7 +14,7 @@
                 <h2>About me</h2>
             </div>
 
-            <div class="row">
+            <div class="row" th:object="${user}">
                 <div class="col-lg-4" data-aos="fade-right">
                     <img th:src="@{/img/profile-img.jpg}" class="img-fluid" alt="">
                 </div>
