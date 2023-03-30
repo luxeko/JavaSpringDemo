@@ -35,12 +35,17 @@ public class WebSecurityConfiguration {
                 .and()
                 .httpBasic()
                 .and()
-                .formLogin().loginPage("/login").permitAll()
-                .loginProcessingUrl("/j_spring_security_check")
+                .formLogin()
+                .loginPage("/login")
                 .usernameParameter("email")
-                .passwordParameter("password")
+                .passwordParameter("password").permitAll()
+                .loginProcessingUrl("/j_spring_security_check")
                 .defaultSuccessUrl("/my-portfolio")
-                .failureUrl("/login?status=false");
+                .failureUrl("/login?status=false")
+                .and()
+                .logout()
+                .logoutUrl( "/j_spring_security_logout" )
+                .logoutSuccessUrl( "/" );
 
         return http.build();
     }

@@ -13,7 +13,8 @@
         <!--        <p th:each="err : ${#fields.errors('global')}" th:text="${err}"></p>-->
         <!--    </div>-->
         <div class="add-more my-3">
-            <a href="/education/create" class="btn btn-success"><i class="bi bi-plus"></i> Add new</a>
+            <a href="/education/create" style="background-color: #149ddd" class="btn text-white"><i
+                    class="bi bi-plus"></i> Add education</a>
         </div>
         <table class="table table-bordered">
             <thead class="table-secondary">
@@ -42,17 +43,19 @@
                 </td>
                 <td th:text="${#dates.format(listEducation.start_time, 'dd-MM-yyyy')}" class="align-middle">
                 </td>
-                <td th:text="${#dates.format(listEducation.end_time, 'dd-MM-yyyy')}" class="align-middle">
+                <td class="align-middle">
+                    <span th:if="${listEducation.end_time == null}">Present</span>
+                    <span th:unless="${listEducation.end_time == null}"
+                          th:text="${#dates.format(listEducation.end_time, 'dd-MM-yyyy')}"></span>
                 </td>
                 <td class="align-middle">
                     <div class="d-flex justify-content-center align-items-center">
-                        <!--                    <a href=""-->
-                        <!--                       class="btn btn-primary text-white me-2"><i class="bi bi-eye"></i></a>-->
-                        <a th:href="@{/education/edit/{id}(id=${listEducation.id})}"
-                           class="btn btn-warning text-white me-2"><i class="bi bi-pencil"></i></a>
-                        <a onclick="return confirm('Are you sure you want to delete?')"
+                        <a style="background-color: #8371fd" th:href="@{/education/edit/{id}(id=${listEducation.id})}"
+                           class="btn text-white me-2"><i class="bi bi-pencil"></i></a>
+                        <a style="background-color: #F65D4E; color: #ffffff"
+                           onclick="return confirm('Are you sure you want to delete?')"
                            th:href="@{/education/delete/{id}(id=${listEducation.id})}"
-                           class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                           class="btn text-white"><i class="bi bi-trash"></i></a>
                     </div>
                 </td>
             </tr>

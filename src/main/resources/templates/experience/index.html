@@ -1,10 +1,66 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>[[${pageTitle}]]</title>
+    <div th:replace="/layout/fragments :: html_head(type='tag')"></div>
 </head>
 <body>
-
+<div th:replace="/layout/fragments :: header"></div>
+<main id="main">
+    <div class="container py-5" data-aos="fade-up">
+        <h2>[[${pageTitle}]]</h2>
+        <!--    <div id="toast" th:if="${#fields.hasErrors('global')}">-->
+        <!--        <p th:each="err : ${#fields.errors('global')}" th:text="${err}"></p>-->
+        <!--    </div>-->
+        <div class="add-more my-3">
+            <a href="/education/create" style="background-color: #149ddd" class="btn text-white"><i
+                    class="bi bi-plus"></i> Add experience</a>
+        </div>
+        <table class="table table-bordered">
+            <thead class="table-secondary">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Company</th>
+                <th scope="col">Position</th>
+                <th style="width: 550px" scope="col">Description</th>
+                <th scope="col">Start time</th>
+                <th scope="col">End time</th>
+                <th class="text-center" scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="listExperience, item: ${listExperiences}">
+                <th th:text="${item.index + 1}" scope="row" class="align-middle">
+                </th>
+                <td th:text="${listExperience.company}" class="align-middle">
+                </td>
+                <td th:text="${listExperience.position}" class="align-middle">
+                </td>
+                <td style="width: 550px" th:text="${listExperience.description}" class="align-middle">
+                </td>
+                <td th:text="${#dates.format(listExperience.start_time, 'dd-MM-yyyy')}" class="align-middle">
+                </td>
+                <td class="align-middle">
+                    <span th:if="${listExperience.end_time == null}">Present</span>
+                    <span th:unless="${listExperience.end_time == null}"
+                          th:text="${#dates.format(listExperience.end_time, 'dd-MM-yyyy')}"></span>
+                </td>
+                <td class="align-middle">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <a style="background-color: #8371fd" th:href="@{/experience/edit/{id}(id=${listExperience.id})}"
+                           class="btn text-white me-2"><i class="bi bi-pencil"></i></a>
+                        <a style="background-color: #F65D4E; color: #ffffff"
+                           onclick="return confirm('Are you sure you want to delete?')"
+                           th:href="@{/experience/delete/{id}(id=${listExperience.id})}"
+                           class="btn text-white"><i class="bi bi-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<div th:replace="/layout/fragments :: footer"></div>
+<div th:replace="/layout/fragments :: back-to-top"></div>
 </body>
 </html>

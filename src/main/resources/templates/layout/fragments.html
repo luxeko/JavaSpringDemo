@@ -73,13 +73,14 @@
             <ul>
                 <li><a th:href="@{/my-portfolio}" class="nav-link scrollto active"><i class="bx bx-home"></i>
                     <span>My CV</span></a></li>
-                <li><a href="#" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About me</span></a></li>
+                <li><a th:href="@{/my-portfolio/edit/{id}(id=${session.userId})}" class="nav-link scrollto"><i
+                        class="bx bx-user"></i> <span>About me</span></a></li>
                 <li><a th:href="@{/my-portfolio/education}" class="nav-link scrollto"><i class="bx bx-file-blank"></i>
                     <span>Education</span></a></li>
                 <li><a th:href="@{/my-portfolio/experience}" class="nav-link scrollto"><i
                         class="bx bx-book-content"></i>
                     <span>Experience</span></a></li>
-                <li><a th:href="@{/logout}" class="nav-link scrollto"><i class='bx bx-log-out'></i>
+                <li><a th:href="@{/j_spring_security_logout}" class="nav-link scrollto"><i class='bx bx-log-out'></i>
                     <span>Logout</span></a></li>
             </ul>
         </nav><!-- .nav-menu -->
