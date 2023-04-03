@@ -10,41 +10,45 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-<div th:replace="/layout/fragments :: navbar"></div>
-<div class="container py-5">
-    <h2>Create new Education</h2>
-    <form th:action="@{/education/add}" method="POST" th:object="${education}">
-        <div class="mb-3">
-            <label for="school" class="form-label">School</label>
-            <input type="text" name="school" class="form-control" id="school" th:field="*{school}">
-            <span class="text-danger" th:if="${#fields.hasErrors('school')}" th:errors="*{school}"></span>
-        </div>
-        <div class="mb-3">
-            <label for="course" class="form-label">Course</label>
-            <input type="text" name="course" class="form-control" id="course" th:field="*{course}">
-            <span class="text-danger" th:if="${#fields.hasErrors('course')}" th:errors="*{course}"></span>
-        </div>
-        <div class="mb-3">
-            <label for="level" class="form-label">Level</label>
-            <input type="text" name="level" class="form-control" id="level" th:field="*{level}">
-            <span class="text-danger" th:if="${#fields.hasErrors('level')}" th:errors="*{level}"></span>
-        </div>
-        <div class="mb-3">
-            <label for="GPA" class="form-label">GPA</label>
-            <input type="text" name="GPA" class="form-control" id="GPA" th:field="*{GPA}">
-            <span class="text-danger" th:if="${#fields.hasErrors('GPA')}" th:errors="*{GPA}"></span>
-        </div>
-        <div class="mb-3">
-            <label for="start_time" class="form-label">Start time</label>
-            <input type="date" name="start_time" class="form-control" id="start_time" th:field="*{start_time}">
-        </div>
-        <div class="mb-3">
-            <label for="end_time" class="form-label">End time</label>
-            <input type="date" name="start_time" class="form-control" id="end_time" th:field="*{end_time}">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
-
+<div th:replace="/layout/fragments :: header"></div>
+<main id="main">
+    <div class="container p-5">
+        <h2>Create new Education</h2>
+        <form th:action="@{/my-portfolio/education/add}" method="POST" th:object="${education}">
+            <input hidden th:field="">
+            <div class="mb-3">
+                <label for="school" class="form-label">School</label>
+                <input type="text" name="school" class="form-control" id="school" th:field="*{school}">
+                <span class="text-danger" th:if="${#fields.hasErrors('school')}" th:errors="*{school}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="course" class="form-label">Course</label>
+                <input type="text" name="course" class="form-control" id="course" th:field="*{course}">
+                <span class="text-danger" th:if="${#fields.hasErrors('course')}" th:errors="*{course}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="level" class="form-label">Level</label>
+                <input type="text" name="level" class="form-control" id="level" th:field="*{level}">
+                <span class="text-danger" th:if="${#fields.hasErrors('level')}" th:errors="*{level}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="GPA" class="form-label">GPA</label>
+                <input type="text" name="GPA" class="form-control" id="GPA" th:field="*{GPA}">
+                <span class="text-danger" th:if="${#fields.hasErrors('GPA')}" th:errors="*{GPA}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="start_time" class="form-label">Start time</label>
+                <input type="date" name="start_time" class="form-control" id="start_time" th:field="*{start_time}">
+            </div>
+            <div class="mb-3">
+                <label for="end_time" class="form-label">End time</label>
+                <input type="date" name="start_time" class="form-control" id="end_time" th:field="*{end_time}">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</main>
+<div th:replace="/layout/fragments :: footer"></div>
+<div th:replace="/layout/fragments :: back-to-top"></div>
 </body>
 </html>

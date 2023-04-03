@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +21,8 @@ public class EducationController {
     private EducationImplService educationImplService;
 
     @GetMapping(value = "")
-    public String index(Model model) {
-        int userId = 1;
+    public String index(Model model,HttpSession session) {
+        int userId = (int) session.getAttribute("userId");
         List<Education> listEducation = this.educationImplService.getAllEducation(userId);
         model.addAttribute("listEducation", listEducation);
         model.addAttribute("pageTitle", "My Education");

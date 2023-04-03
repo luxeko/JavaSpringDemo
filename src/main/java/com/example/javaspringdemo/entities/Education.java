@@ -25,7 +25,7 @@ public class Education {
     private String school;
     @Basic
     @Column(name = "course")
-    @Size(min = 5, max = 255, message = "Size must be between 5 and 255")
+    @Size(min = 2, max = 255, message = "Size must be between 5 and 255")
     private String course;
     @Basic
     @Column(name = "level")
