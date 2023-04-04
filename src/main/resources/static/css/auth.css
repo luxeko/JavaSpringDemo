@@ -19,13 +19,12 @@ main {
     overflow: hidden;
     background-image: url("../img/sapce_man.jpg");
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-size: cover;
     background-position: center;
     padding: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 .box {

@@ -1,46 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>[[${pageTitle}]]</title>
     <div th:replace="/layout/fragments :: html_head(type='tag')"></div>
-
-    <!--    Jquery-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
-            integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-<div th:replace="/layout/fragments :: navbar"></div>
-<div class="container py-5">
-    <h2><a>Home</a> Edit Education</h2>
-    <form th:action="@{/education/update/{id}(id=${id})}" method="POST" th:object="${education}">
-        <input type="hidden" th:field="*{id}">
-        <div class="mb-3">
-            <label for="school" class="form-label">School</label>
-            <input type="text" name="school" class="form-control" id="school" th:field="*{school}">
-        </div>
-        <div class="mb-3">
-            <label for="course" class="form-label">Course</label>
-            <input type="text" name="course" class="form-control" id="course" th:field="*{course}">
-        </div>
-        <div class="mb-3">
-            <label for="level" class="form-label">Level</label>
-            <input type="text" name="level" class="form-control" id="level" th:field="*{level}">
-        </div>
-        <div class="mb-3">
-            <label for="GPA" class="form-label">GPA</label>
-            <input type="text" name="GPA" class="form-control" id="GPA" th:field="*{GPA}">
-        </div>
-        <div class="mb-3">
-            <label for="start_time" class="form-label">Start time</label>
-            <input type="date" name="start_time" class="form-control" id="start_time" th:field="*{start_time}">
-        </div>
-        <div class="mb-3">
-            <label for="end_time" class="form-label">End time</label>
-            <input type="date" name="end_time" class="form-control" id="end_time" th:field="*{end_time}">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+<div th:replace="/layout/fragments :: header"></div>
+<main id="main">
+    <div class="container py-5" data-aos="fade-left">
+        <h2><a>Home</a> Edit Education</h2>
+        <form th:action="@{/my-portfolio/education/update/{id}(id=${id})}" method="POST" th:object="${education}">
+            <div class="mb-3">
+                <label for="school" class="form-label">School</label>
+                <input type="text" name="school" class="form-control" id="school" th:field="*{school}">
+                <span class="text-danger" th:if="${#fields.hasErrors('school')}" th:errors="*{school}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="course" class="form-label">Course</label>
+                <input type="text" name="course" class="form-control" id="course" th:field="*{course}">
+            </div>
+            <div class="mb-3">
+                <label for="level" class="form-label">Level</label>
+                <input type="text" name="level" class="form-control" id="level" th:field="*{level}">
+            </div>
+            <div class="mb-3">
+                <label for="GPA" class="form-label">GPA</label>
+                <input type="text" name="GPA" class="form-control" id="GPA" th:field="*{GPA}">
+            </div>
+            <div class="mb-3">
+                <label for="start_time" class="form-label">Start time</label>
+                <input type="date" name="start_time" class="form-control" id="start_time" th:field="*{start_time}">
+            </div>
+            <div class="mb-3">
+                <label for="end_time" class="form-label">End time</label>
+                <input type="date" name="end_time" class="form-control" id="end_time" th:field="*{end_time}">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</main>
+<div th:replace="/layout/fragments :: footer"></div>
+<div th:replace="/layout/fragments :: back-to-top"></div>
 </body>
 </html>

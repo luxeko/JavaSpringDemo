@@ -7,18 +7,22 @@
     <meta content="" name="keywords">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <!-- Favicons -->
     <link rel="icon" th:href="@{/img/favicon.png}" >
     <link rel="icon" th:href="@{/img/apple-touch-icon.png}">
-
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i">
-
+    <!-- Google Icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/auth.css}">
+    <link rel="stylesheet" th:href="@{/css/toast.css}">
+
+    <!-- font awesome -->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <main>
+    <div id="toast" th:if="${msg}" th:attr="data-value=${msg}"></div>
     <div class="box">
         <div class="inner-box">
             <div class="forms-wrap">
@@ -146,5 +150,17 @@
 </main>
 
 <script th:src="@{/js/auth.js}"></script>
+<script th:src="@{/js/toast.js}"></script>
+<script>
+    const el = document.getElementById('toast')
+    if (el !== null) {
+        toast({
+            title: 'Success',
+            message: el.dataset.value,
+            type: 'success',
+            duration: 5000
+        });
+    }
+</script>
 </body>
 </html>

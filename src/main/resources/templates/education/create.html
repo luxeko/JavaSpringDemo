@@ -12,10 +12,9 @@
 <body>
 <div th:replace="/layout/fragments :: header"></div>
 <main id="main">
-    <div class="container p-5">
+    <div class="container p-5" data-aos="fade-right">
         <h2>Create new Education</h2>
         <form th:action="@{/my-portfolio/education/add}" method="POST" th:object="${education}">
-            <input hidden th:field="">
             <div class="mb-3">
                 <label for="school" class="form-label">School</label>
                 <input type="text" name="school" class="form-control" id="school" th:field="*{school}">

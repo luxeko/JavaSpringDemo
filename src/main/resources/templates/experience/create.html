@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>[[${pageTitle}]]</title>
+    <div th:replace="/layout/fragments :: html_head(type='tag')"></div>
+
+    <!--    Jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+            integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-
+<div th:replace="/layout/fragments :: header"></div>
+<main id="main">
+    <div class="container p-5" data-aos="fade-right">
+        <h2>Create new Experience</h2>
+        <form th:action="@{/my-portfolio/experience/add}" method="POST" th:object="${experience}">
+            <div class="mb-3">
+                <label for="school" class="form-label">Company</label>
+                <input type="text" name="school" class="form-control" id="school" th:field="*{company}">
+                <span class="text-danger" th:if="${#fields.hasErrors('company')}" th:errors="*{company}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="course" class="form-label">Position</label>
+                <input type="text" name="course" class="form-control" id="course" th:field="*{position}">
+                <span class="text-danger" th:if="${#fields.hasErrors('position')}" th:errors="*{position}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="level" class="form-label">Description</label>
+                <input type="text" name="level" class="form-control" id="level" th:field="*{description}">
+                <span class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="start_time" class="form-label">Start time</label>
+                <input type="date" name="start_time" class="form-control" id="start_time" th:field="*{start_time}">
+            </div>
+            <div class="mb-3">
+                <label for="end_time" class="form-label">End time</label>
+                <input type="date" name="start_time" class="form-control" id="end_time" th:field="*{end_time}">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</main>
+<div th:replace="/layout/fragments :: footer"></div>
+<div th:replace="/layout/fragments :: back-to-top"></div>
 </body>
 </html>

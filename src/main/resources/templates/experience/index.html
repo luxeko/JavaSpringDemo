@@ -9,11 +9,9 @@
 <main id="main">
     <div class="container py-5" data-aos="fade-up">
         <h2>[[${pageTitle}]]</h2>
-        <!--    <div id="toast" th:if="${#fields.hasErrors('global')}">-->
-        <!--        <p th:each="err : ${#fields.errors('global')}" th:text="${err}"></p>-->
-        <!--    </div>-->
+        <div id="toast" th:if="${success}" th:attr="data-value=${success}"></div>
         <div class="add-more my-3">
-            <a href="/education/create" style="background-color: #149ddd" class="btn text-white"><i
+            <a href="/my-portfolio/experience/create" style="background-color: #149ddd" class="btn text-white"><i
                     class="bi bi-plus"></i> Add experience</a>
         </div>
         <table class="table table-bordered">
@@ -47,11 +45,11 @@
                 </td>
                 <td class="align-middle">
                     <div class="d-flex justify-content-center align-items-center">
-                        <a style="background-color: #8371fd" th:href="@{/experience/edit/{id}(id=${listExperience.id})}"
+                        <a style="background-color: #8371fd" th:href="@{/my-portfolio/experience/edit/{id}(id=${listExperience.id})}"
                            class="btn text-white me-2"><i class="bi bi-pencil"></i></a>
                         <a style="background-color: #F65D4E; color: #ffffff"
                            onclick="return confirm('Are you sure you want to delete?')"
-                           th:href="@{/experience/delete/{id}(id=${listExperience.id})}"
+                           th:href="@{/my-portfolio/experience/delete/{id}(id=${listExperience.id})}"
                            class="btn text-white"><i class="bi bi-trash"></i></a>
                     </div>
                 </td>
@@ -62,5 +60,16 @@
 </main>
 <div th:replace="/layout/fragments :: footer"></div>
 <div th:replace="/layout/fragments :: back-to-top"></div>
+<script>
+    const el = document.getElementById('toast')
+    if (el !== null) {
+        toast({
+            title: 'Success',
+            message: el.dataset.value,
+            type: 'success',
+            duration: 5000
+        });
+    }
+</script>
 </body>
 </html>

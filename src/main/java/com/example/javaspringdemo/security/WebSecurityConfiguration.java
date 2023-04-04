@@ -28,9 +28,7 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/user/create").permitAll()
-                .antMatchers("/login/**")
-                .anonymous()
+                .antMatchers("/my-portfolio/create").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()

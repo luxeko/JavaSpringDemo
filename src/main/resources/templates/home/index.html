@@ -36,7 +36,9 @@
                                 <li>
                                     <i class="bi bi-chevron-right"></i>
                                     <strong>Phone:</strong>
-                                    <span th:text="'+ ' + ${user.phone}"></span>
+                                    <div th:if="${user.phone}">
+                                        <span th:text="'+ ' + ${user.phone}"></span>
+                                    </div>
                                 </li>
                                 <li>
                                     <i class="bi bi-chevron-right"></i>

@@ -26,7 +26,7 @@ public class UserController {
                          @RequestParam("password") String password) {
         Optional<User> userFindByEmail = userRepository.findUserByEmail(email);
         if (userFindByEmail.isPresent()) {
-            redirectAttributes.addFlashAttribute("emailExists", "Email already exists");
+            redirectAttributes.addFlashAttribute("msg", "Email already exists");
             return "redirect:/login";
         }
         User user = new User();
@@ -34,6 +34,7 @@ public class UserController {
         user.setUsername(username);
         user.setPassword(password);
         userImplService.save(user);
+        redirectAttributes.addFlashAttribute("msg", "Create user success");
         return "redirect:/login";
     }
 
@@ -43,7 +44,8 @@ public class UserController {
         if (op.isPresent()) {
             User user = op.get();
             model.addAttribute("user", user);
-            return "home/me";
+            model.addAttribute("pageTitle", "My Info");
+            return "user/index";
         }
         return "redirect:/my-portfolio";
     }
